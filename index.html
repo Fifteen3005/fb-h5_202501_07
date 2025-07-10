@@ -11,28 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     
     <!-- Chosen Palette: Calm Harmony (Slate/Blue/Teal) -->
-    <!-- Application Structure Plan: This version adheres closely to the original report's linear structure. The SPA is organized into three main sequential sections (Part 1, 2, 3) reflecting the source document. This structure is chosen to provide a familiar, document-like reading experience for users who prefer a step-by-step exploration. Interactive charts are embedded directly within their relevant subsections (e.g., iOS Optimization) to provide visual context without disrupting the narrative flow. -->
-    <!-- Visualization & Content Choices: Key achievements are shown with Chart.js bar charts for clear comparison of KPI improvements (e.g., CPR -5%, Fee Ratio -27%). Goal: Compare. The iOS vs. Android comparison uses a simple two-column layout for direct stat comparison. Goal: Inform. The H2 plan uses structured HTML cards for organized presentation. Goal: Organize. All choices prioritize clarity and interactivity without SVG or Mermaid, embedding visualizations within the report's native structure. -->
+    <!-- Application Structure Plan: This version uses a tab-based navigation to switch between the three main parts of the report. This non-linear, app-like structure allows users to directly access the section they are interested in, improving usability and reducing cognitive load compared to a long-scrolling document. The internal, optimized layout of each section is preserved. -->
+    <!-- Visualization & Content Choices: Key achievements are shown with data cards for clear comparison of KPI improvements. Goal: Compare & Inform. The H2 plan uses structured HTML cards for organized presentation. Goal: Organize. All choices prioritize clarity and interactivity without SVG or Mermaid, now presented within a tabbed interface. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
     <style>
         body {
             font-family: 'Noto Sans SC', sans-serif;
-            scroll-behavior: smooth;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 280px;
-            max-height: 350px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 300px;
-            }
         }
         h2 {
             border-left: 5px solid #2563eb;
@@ -45,6 +30,30 @@
              margin-top: 2rem;
              margin-bottom: 1rem;
         }
+        .tab-btn {
+            padding: 0.75rem 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            border-bottom: 3px solid transparent;
+        }
+        @media (min-width: 640px) {
+            .tab-btn {
+                padding: 0.75rem 1.5rem;
+            }
+        }
+        .tab-active {
+            border-bottom-color: #2563eb;
+            color: #1e40af;
+            font-weight: 700;
+        }
+        .tab-inactive {
+            color: #475569;
+        }
+        .tab-inactive:hover {
+            background-color: #f1f5f9;
+            color: #1e3a8a;
+        }
     </style>
 </head>
 <body class="bg-slate-100 text-slate-800">
@@ -52,13 +61,20 @@
     <div class="container mx-auto p-4 md:p-8 max-w-5xl bg-white rounded-xl my-8 shadow-lg">
 
         <!-- Header -->
-        <header class="text-center mb-12">
+        <header class="text-center mb-8">
             <h1 class="text-3xl md:text-4xl font-bold text-slate-900">2025上半年Facebook H5渠道投放复盘及下半年规划</h1>
         </header>
 
-        <main>
+        <!-- Main Navigation -->
+        <nav id="main-nav" class="flex justify-center border-b border-slate-200 sticky top-0 bg-white/80 backdrop-blur-sm z-10">
+            <button data-target="part1" class="tab-btn tab-active">渠道特性与优化</button>
+            <button data-target="part2" class="tab-btn tab-inactive">上半年复盘</button>
+            <button data-target="part3" class="tab-btn tab-inactive">下半年规划</button>
+        </nav>
+
+        <main class="mt-8">
             <!-- 第一部分：渠道特性与优化结构 (Optimized) -->
-            <section id="part1" class="mb-16">
+            <section id="part1" class="tab-panel">
                 <h2 class="text-2xl font-bold text-slate-800">第一部分：渠道特性与优化结构</h2>
                 
                 <article>
@@ -146,7 +162,7 @@
             </section>
 
             <!-- 第二部分：上半年重点项目复盘 (Optimized with Data Cards) -->
-            <section id="part2" class="mb-16">
+            <section id="part2" class="tab-panel hidden">
                 <h2 class="text-2xl font-bold text-slate-800">第二部分：上半年重点项目复盘</h2>
                 <article>
                     <h3 class="text-xl font-bold text-slate-700">2.1 联动合作案例</h3>
@@ -333,13 +349,13 @@
             </section>
 
             <!-- 第三部分：下半年规划 (Optimized) -->
-            <section id="part3">
+            <section id="part3" class="tab-panel hidden">
                 <h2 class="text-2xl font-bold text-slate-800">第三部分：下半年规划</h2>
                 <article class="space-y-10">
                     <!-- iOS Strategy -->
                     <div>
                         <h3 class="text-xl font-bold text-slate-700 !mt-0 !border-b-2 !border-blue-300">
-                            <span class="text-2xl mr-2">📱</span>FB-H5 iOS: 降本增效
+                            <span class="text-2xl mr-2">📱</span>FB-H5 iOS: 深化提质
                         </h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
                             <div class="bg-slate-50 p-4 rounded-lg">
@@ -405,7 +421,31 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // No charts to render in this version as they are replaced by data cards.
+            const nav = document.getElementById('main-nav');
+            const panels = document.querySelectorAll('.tab-panel');
+            const buttons = nav.querySelectorAll('.tab-btn');
+
+            nav.addEventListener('click', (e) => {
+                const clickedButton = e.target.closest('.tab-btn');
+                if (!clickedButton) return;
+
+                const targetPanelId = clickedButton.dataset.target;
+
+                buttons.forEach(btn => {
+                    btn.classList.remove('tab-active');
+                    btn.classList.add('tab-inactive');
+                });
+                clickedButton.classList.add('tab-active');
+                clickedButton.classList.remove('tab-inactive');
+                
+                panels.forEach(panel => {
+                    if (panel.id === targetPanelId) {
+                        panel.classList.remove('hidden');
+                    } else {
+                        panel.classList.add('hidden');
+                    }
+                });
+            });
         });
     </script>
 </body>
