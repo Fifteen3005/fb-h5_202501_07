@@ -193,7 +193,7 @@
                             </div>
                         </div>
                         <!-- Internal Collaboration -->
-                        < <div id="risk-collab-trigger" class="bg-slate-50 p-6 rounded-xl flex flex-col cursor-pointer hover:bg-slate-100 transition">
+                        <div id="risk-collab-trigger" class="bg-slate-50 p-6 rounded-xl flex flex-col cursor-pointer hover:bg-slate-100 transition">
                             <h4 class="font-bold text-lg text-cyan-800">案例二：内部联动 - 风险策略协同<span class="text-xs ml-1 font-sans">📊</span></h4>
                             <p class="text-sm text-slate-600 mt-2 mb-4 flex-grow">与风控部门建立高效沟通机制，提前预判和调整投放策略，以应对“风险灰度切换”带来的影响。</p>
                             <div class="bg-white p-4 rounded-lg">
@@ -243,7 +243,7 @@
                             <p class="text-sm text-slate-600 mt-2">通过更精细化的用户标签定向，筛选出更高质量的精准人群。此策略消耗已占纯iOS展示消耗的 <strong>40%</strong>。</p>
                             <!-- Device Targeting -->
                             <div class="mt-4 bg-white p-4 rounded-lg">
-                                <h5 class="font-semibold text-indigo-700">测试一：机型定向 (VS 常规有额点位)</h5>
+                                <h5 class="font-semibold text-indigo-700">测试一：机型定向 (VS 常规iOS点位)</h5>
                                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-3 text-center">
                                     <div class="bg-slate-50 p-3 rounded-md">
                                         <p class="text-sm font-semibold">CPS</p>
@@ -484,7 +484,7 @@
             };
 
             if (androidTrigger) {
-                const androidImageUrl = 'https://cdn.jsdelivr.net/gh/Fifteen3005/fb-h5_202501_07/android_data.png';
+                const androidImageUrl = 'https://cdn.jsdelivr.net/gh/Fifteen3005/fb-h5_202501_07/picture1_html.png';
                 androidTrigger.addEventListener('click', () => openModalWithImage(androidImageUrl));
             }
 
@@ -502,12 +502,11 @@
                 const tagBehaviorImageUrl = 'https://cdn.jsdelivr.net/gh/Fifteen3005/fb-h5_202501_07/user_tag.png';
                 tagBehaviorTrigger.addEventListener('click', () => openModalWithImage(tagBehaviorImageUrl));
             }
-
+            
             if (riskCollabTrigger) {
                 const riskImageUrl = 'https://cdn.jsdelivr.net/gh/Fifteen3005/fb-h5_202501_07/risk.png';
                 riskCollabTrigger.addEventListener('click', () => openModalWithImage(riskImageUrl));
             }
-
 
             if(closeModalBtn) {
                 closeModalBtn.addEventListener('click', closeModal);
