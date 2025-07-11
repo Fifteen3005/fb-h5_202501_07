@@ -140,7 +140,7 @@
 
                     <h3 class="text-xl font-bold text-slate-700">1.2 四大优化支柱</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-4 text-center">
-                        <div class="bg-blue-50 p-4 rounded-lg border-t-4 border-blue-400">
+                        <div id="h5-process-trigger" class="bg-blue-50 p-4 rounded-lg border-t-4 border-blue-400 cursor-pointer hover:bg-blue-100 transition">
                             <div class="text-2xl">⚙️</div>
                             <h4 class="font-bold mt-2">H5流程优化</h4>
                             <p class="text-xs text-slate-500 mt-1">提升点击-注册-下载转化</p>
@@ -174,7 +174,7 @@
                         <div class="bg-slate-50 p-6 rounded-xl flex flex-col">
                             <h4 class="font-bold text-lg text-amber-800">案例一：媒体联动 - 精准排除老户</h4>
                             <p class="text-sm text-slate-600 mt-2 mb-4 flex-grow">通过与媒体合作，全面应用“单字段排除”策略，大幅降低拉新广告中的老户占比，提升预算效率。</p>
-                            <div class="bg-white p-4 rounded-lg">
+                            <div id="old-customer-trigger" class="bg-white p-4 rounded-lg cursor-pointer hover:bg-slate-100 transition">
                                 <p class="text-sm font-semibold text-slate-700">关键成果</p>
                                 <div class="flex items-baseline justify-around gap-4 pt-2 text-center">
                                     <div>
@@ -425,7 +425,7 @@
 
     <!-- Image Modal -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 hidden z-50">
-        <div class="bg-white p-2 rounded-lg shadow-xl max-w-4xl max-h-[90vh] relative">
+        <div class="bg-white p-2 rounded-lg shadow-xl max-w-6xl max-h-[90vh] relative">
             <button id="modal-close-btn" class="absolute -top-3 -right-3 bg-white rounded-full p-1 text-black text-2xl leading-none w-8 h-8 flex items-center justify-center">&times;</button>
             <img id="modal-image" src="" alt="详细数据" class="object-contain max-w-full max-h-[85vh]">
         </div>
@@ -460,27 +460,48 @@
             });
 
             // Modal functionality
-            const trigger = document.getElementById('android-details-trigger');
             const modal = document.getElementById('image-modal');
             const modalImage = document.getElementById('modal-image');
             const closeModalBtn = document.getElementById('modal-close-btn');
+            
+            const androidTrigger = document.getElementById('android-details-trigger');
+            const h5ProcessTrigger = document.getElementById('h5-process-trigger');
+            const oldCustomerTrigger = document.getElementById('old-customer-trigger');
 
-            if (trigger && modal && modalImage && closeModalBtn) {
-                // 这是您GitHub仓库中图片的最终链接
-                const imageUrl = 'https://cdn.jsdelivr.net/gh/Fifteen3005/fb-h5_202501_07/android_data.png';
-
-                trigger.addEventListener('click', () => {
+            const openModalWithImage = (imageUrl) => {
+                if (modal && modalImage) {
                     modalImage.src = imageUrl;
                     modal.classList.remove('hidden');
-                });
-
-                const closeModal = () => {
+                }
+            };
+            
+            const closeModal = () => {
+                if (modal) {
                     modal.classList.add('hidden');
-                };
+                }
+            };
 
+            if (androidTrigger) {
+                const androidImageUrl = 'https://cdn.jsdelivr.net/gh/Fifteen3005/fb-h5_202501_07/android_data.png';
+                androidTrigger.addEventListener('click', () => openModalWithImage(androidImageUrl));
+            }
+
+            if (h5ProcessTrigger) {
+                const h5ProcessImageUrl = 'https://cdn.jsdelivr.net/gh/Fifteen3005/fb-h5_202501_07/H5_process.png';
+                h5ProcessTrigger.addEventListener('click', () => openModalWithImage(h5ProcessImageUrl));
+            }
+
+            if (oldCustomerTrigger) {
+                const oldCustomerImageUrl = 'https://cdn.jsdelivr.net/gh/Fifteen3005/fb-h5_202501_07/h5_oldcustomer_typeshit.png';
+                oldCustomerTrigger.addEventListener('click', () => openModalWithImage(oldCustomerImageUrl));
+            }
+
+            if(closeModalBtn) {
                 closeModalBtn.addEventListener('click', closeModal);
+            }
+            
+            if(modal) {
                 modal.addEventListener('click', (e) => {
-                    // 如果点击的是背景遮罩，则关闭模态窗口
                     if (e.target === modal) {
                         closeModal();
                     }
