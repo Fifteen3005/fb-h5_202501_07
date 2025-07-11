@@ -468,6 +468,7 @@
             const h5ProcessTrigger = document.getElementById('h5-process-trigger');
             const oldCustomerTrigger = document.getElementById('old-customer-trigger');
             const tagBehaviorTrigger = document.getElementById('tag-behavior-trigger');
+            const riskCollabTrigger = document.getElementById('risk-collab-trigger');
 
             const openModalWithImage = (imageUrl) => {
                 if (modal && modalImage) {
@@ -501,6 +502,12 @@
                 const tagBehaviorImageUrl = 'https://cdn.jsdelivr.net/gh/Fifteen3005/fb-h5_202501_07/user_tag.png';
                 tagBehaviorTrigger.addEventListener('click', () => openModalWithImage(tagBehaviorImageUrl));
             }
+
+            if (riskCollabTrigger) {
+                const riskImageUrl = 'https://cdn.jsdelivr.net/gh/Fifteen3005/fb-h5_202501_07/risk.png';
+                riskCollabTrigger.addEventListener('click', () => openModalWithImage(riskImageUrl));
+            }
+
 
             if(closeModalBtn) {
                 closeModalBtn.addEventListener('click', closeModal);
