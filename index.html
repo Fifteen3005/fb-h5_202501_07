@@ -214,7 +214,7 @@
                     <div class="space-y-8 mt-4">
                          <!-- Strategy 1: Device Display -->
                         <div class="p-6 rounded-xl bg-slate-50">
-                            <h4 class="font-bold text-lg text-slate-800">降本策略：全设备投放</h4>
+                            <h4 id="all-device-trigger" class="font-bold text-lg text-slate-800 cursor-pointer hover:text-blue-600 transition">降本策略：全设备投放<span class="text-xs ml-1 font-sans">📊</span></h4>
                             <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-2 items-center">
                                 <div class="text-sm text-slate-600 lg:col-span-3">
                                     <p class="mb-2"><strong>目标：</strong> 降低iOS投放成本。</p>
@@ -227,7 +227,7 @@
                                         <p class="text-2xl font-bold text-green-600">↓25%</p>
                                     </div>
                                     <div class="bg-white p-3 rounded-lg shadow-sm">
-                                        <p class="text-xs text-slate-500">费比T7</p>
+                                        <p class="text-xs text-slate-500">费比</p>
                                         <p class="text-2xl font-bold text-green-600">↓27%</p>
                                     </div>
                                 </div>
@@ -243,20 +243,20 @@
                             <p class="text-sm text-slate-600 mt-2">通过更精细化的用户标签定向，筛选出更高质量的精准人群。此策略消耗已占纯iOS展示消耗的 <strong>40%</strong>。</p>
                             <!-- Device Targeting -->
                             <div class="mt-4 bg-white p-4 rounded-lg">
-                                <h5 class="font-semibold text-indigo-700">测试一：机型定向 (VS 常规有额点位)</h5>
+                                <h5 class="font-semibold text-indigo-700">测试一：机型定向 (VS 常规iOS点位)</h5>
                                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-3 text-center">
                                     <div class="bg-slate-50 p-3 rounded-md">
-                                        <p class="text-sm font-semibold">CPS_T7</p>
+                                        <p class="text-sm font-semibold">CPS</p>
                                         <p class="text-2xl font-bold text-red-600 mt-1">↑16%</p>
                                         <p class="text-xs text-slate-500">成本上升</p>
                                     </div>
                                     <div class="bg-slate-50 p-3 rounded-md">
                                         <p class="text-sm font-semibold">人群质量</p>
                                         <p class="text-2xl font-bold text-green-600 mt-1">↑39%</p>
-                                        
+                                        <p class="text-xs text-slate-500">注册成交率</p>
                                     </div>
                                     <div class="bg-indigo-100 p-3 rounded-md ring-2 ring-indigo-300">
-                                        <p class="text-sm font-bold text-indigo-800">最终费比_T7</p>
+                                        <p class="text-sm font-bold text-indigo-800">最终费比</p>
                                         <p class="text-2xl font-bold text-green-600 mt-1">↓7%</p>
                                         <p class="text-xs text-indigo-600">优化</p>
                                     </div>
@@ -274,7 +274,7 @@
                                     <div class="bg-slate-50 p-3 rounded-md">
                                         <p class="text-sm font-semibold">人群质量</p>
                                         <p class="text-2xl font-bold text-green-600 mt-1">↑21%</p>
-                                        
+                                        <p class="text-xs text-slate-500">注册成交率T7</p>
                                     </div>
                                     <div class="bg-teal-100 p-3 rounded-md ring-2 ring-teal-300">
                                         <p class="text-sm font-bold text-teal-800">最终费比_T7</p>
@@ -290,7 +290,7 @@
                         </div>
                         <!-- Strategy 3: Placement Exploration -->
                         <div class="p-6 rounded-xl bg-slate-50">
-                            <h4 class="font-bold text-lg text-slate-800">增效策略：点位及规则探索</h4>
+                            <h4 class="font-bold text-lg text-slate-800">增效策略：点位探索</h4>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-3 text-sm">
                                 <div class="bg-white p-4 rounded-lg">
                                     <h5 class="font-semibold text-slate-800">applist点位</h5>
@@ -375,7 +375,7 @@
                             <div class="bg-slate-50 p-4 rounded-lg md:col-span-2">
                                 <h4 class="font-semibold">3. 安卓及iOS样本混合回传测试</h4>
                                 <p class="text-xs mt-1 text-slate-500"><strong>背景:</strong> “全设备展示”策略的进阶探索，旨在进一步优化模型。</p>
-                                <p class="text-sm mt-2"><strong>行动:</strong> 测试将安卓和iOS转化事件样本混合后回传，探索能否进一步降低模型学习成本，提升投放效率。</p>
+                                <p class="text-sm mt-2"><strong>行动:</strong> 测试将安卓和iOS的“有额”等转化事件样本混合后回传，探索能否进一步降低模型学习成本，提升投放效率。</p>
                             </div>
                         </div>
                     </div>
@@ -407,7 +407,7 @@
                          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
                              <div class="bg-slate-50 p-4 rounded-lg">
                                 <h4 class="font-semibold">1. BM精细化投放测试</h4>
-                                <p class="text-xs mt-1 text-slate-500"><strong>背景:</strong> 寻求在不同人群、版位上更精细化的出价方式。</p>
+                                <p class="text-xs mt-1 text-slate-500"><strong>背景:</strong> 寻求在不同人群、版位上更精细化的预算分配方式。</p>
                                 <p class="text-sm mt-2"><strong>行动:</strong> 针对老用户、版位、人群包，通过调整出价系数（Bid Multiplier）进行系统性测试。</p>
                             </div>
                              <div class="bg-slate-50 p-4 rounded-lg">
@@ -469,6 +469,7 @@
             const oldCustomerTrigger = document.getElementById('old-customer-trigger');
             const tagBehaviorTrigger = document.getElementById('tag-behavior-trigger');
             const riskCollabTrigger = document.getElementById('risk-collab-trigger');
+            const allDeviceTrigger = document.getElementById('all-device-trigger');
 
             const openModalWithImage = (imageUrl) => {
                 if (modal && modalImage) {
@@ -506,6 +507,11 @@
             if (riskCollabTrigger) {
                 const riskImageUrl = 'https://cdn.jsdelivr.net/gh/Fifteen3005/fb-h5_202501_07/risk.png';
                 riskCollabTrigger.addEventListener('click', () => openModalWithImage(riskImageUrl));
+            }
+
+            if (allDeviceTrigger) {
+                const allDeviceImageUrl = 'https://cdn.jsdelivr.net/gh/Fifteen3005/fb-h5_202501_07/alldevice.png';
+                allDeviceTrigger.addEventListener('click', () => openModalWithImage(allDeviceImageUrl));
             }
 
             if(closeModalBtn) {
